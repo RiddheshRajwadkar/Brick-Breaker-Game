@@ -18,10 +18,10 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
     private Timer Timer;
     private int delay = 8;
     private int playerX = 310;
-    private int ballposX = 120;
-    private int ballposY = 350;
-    private int ballXdir = -1;
-    private int ballYdir = -2;
+    private int ballposX = 350;
+    private int ballposY = 530;
+    private int ballXdir = 1;
+    private int ballYdir = 1;
     private MapGenerator map;
 
     public Gameplay() {
@@ -40,9 +40,9 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
         map.draw((Graphics2D) g);
 
         g.setColor(Color.yellow);
-        g.fillRect(0, 0, 3, 592);
-        g.fillRect(0, 0, 692, 3);
-        g.fillRect(691, 0, 3, 592);
+        g.fillRect(0, 0, 0, 592);
+        g.fillRect(0, 0, 0, 3);
+        g.fillRect(692, 0, 0, 592);
 
         g.setColor(Color.white);
         g.setFont(new Font("serif", Font.BOLD, 25));
@@ -57,8 +57,8 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
 
         if (ballposY > 570) {
             play = false;
-            ballXdir = 0;
-            ballYdir = 0;
+            ballXdir = -1;
+            ballYdir = -2;
             g.setColor(Color.red);
             g.setFont(new Font("serif", Font.BOLD, 30));
             g.drawString("    Game Over Score: " + score, 190, 300);
@@ -68,8 +68,8 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
         }
         if(totalbricks == 0){
             play = false;
-            ballYdir = -2;
-            ballXdir = -1;
+            ballYdir = 1;
+            ballXdir = 1;
             g.setColor(Color.red);
             g.setFont(new Font("serif",Font.BOLD,30));
             g.drawString("    Game Over: "+score,190,300);
@@ -170,10 +170,11 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
 
         if (e.getKeyCode() == KeyEvent.VK_ENTER) {
             if (!play) {
-                ballposX = 120;
-                ballposY = 350;
-                ballXdir = -1;
-                ballYdir = -2;
+                play = true;
+                ballposX = 350;
+                ballposY = 530;
+                ballXdir = 1;
+                ballYdir = 2;
                 score = 0;
                 playerX = 310;
                 totalbricks = 21;
@@ -189,12 +190,12 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
     public void moveRight ()
     {
         play = true;
-        playerX += 20;
+        playerX += 25;
     }
     public void moveLeft ()
     {
         play = true;
-        playerX -= 20;
+        playerX -= 25;
     }
 
 
